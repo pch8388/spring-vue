@@ -83,12 +83,30 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>pre integration test</id>
+                        <goals>
+                            <goal>start</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>post integration test</id>
+                        <goals>
+                            <goal>stop</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.6.0</version>
                 <executions>
                     <execution>
-                        <id>front-end install</id>
+                        <id>font-end install</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -101,7 +119,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>front-end unit test</id>
+                        <id>font-end unit test</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -115,7 +133,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>front-end build package</id>
+                        <id>font-end build package</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -148,7 +166,6 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>3.1.0</version>
                 <executions>
@@ -163,23 +180,27 @@
                             <resources>
                                 <resource>
                                     <directory>front-end/dist</directory>
-                                    <includes><include>index.html</include></includes>
+                                    <includes>
+                                        <include>index.html</include>
+                                    </includes>
                                 </resource>
                             </resources>
                         </configuration>
                     </execution>
                     <execution>
-                        <id>copy front-end static assets</id>
+                        <id>copy front-end assets</id>
                         <goals>
                             <goal>copy-resources</goal>
                         </goals>
                         <phase>prepare-package</phase>
                         <configuration>
-                            <outputDirectory>${basedir}/src/main/resources/static</outputDirectory>
+                            <outputDirectory>${basedir}/src/main/resources/static/static</outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>front-end/dist</directory>
-                                    <excludes><exclude>index.html</exclude></excludes>
+                                    <excludes>
+                                        <exclude>index.html</exclude>
+                                    </excludes>
                                 </resource>
                             </resources>
                         </configuration>
@@ -195,13 +216,15 @@
                             <resources>
                                 <resource>
                                     <directory>front-end/dist</directory>
-                                    <includes><include>index.html</include></includes>
+                                    <includes>
+                                        <include>index.html</include>
+                                    </includes>
                                 </resource>
                             </resources>
                         </configuration>
                     </execution>
                     <execution>
-                        <id>copy front-end static assets to target</id>
+                        <id>copy front-end assets to target</id>
                         <goals>
                             <goal>copy-resources</goal>
                         </goals>
@@ -211,7 +234,9 @@
                             <resources>
                                 <resource>
                                     <directory>front-end/dist</directory>
-                                    <excludes><exclude>index.html</exclude></excludes>
+                                    <excludes>
+                                        <exclude>index.html</exclude>
+                                    </excludes>
                                 </resource>
                             </resources>
                         </configuration>
@@ -219,16 +244,15 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-clean-plugin</artifactId>
                 <version>3.1.0</version>
                 <configuration>
                     <filesets>
                         <fileset>
-                            <directory>${basedir}/src/main/resources/static</directory>
+                            <directory>${basedir}/src/main/resources/static/static</directory>
                         </fileset>
                         <fileset>
-                            <directory>${basedir}/target/classes/templates</directory>
+                            <directory>${basedir}/src/main/resources/templates</directory>
                             <includes>
                                 <include>index.html</include>
                             </includes>
@@ -236,25 +260,9 @@
                     </filesets>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>pre integration test</id>
-                        <goals>
-                            <goal>start</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>post integration test</id>
-                        <goals>
-                            <goal>stop</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
+
+
 
 </project>
