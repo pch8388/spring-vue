@@ -26,7 +26,9 @@
           <p class="accept-terms text-muted">By clicking "Create account", you agree to our
             <a href="#">terms of service</a> and <a href="#">privacy policy</a>.
           </p>
-          <p class="text-center text-muted">Already have an account? <a href="/login">Sign in</a></p>
+          <p class="text-center text-muted">Already have an account?
+            <a href="/login">Sign in</a>
+          </p>
         </form>
       </div>
     </div>
@@ -48,27 +50,27 @@
 import registrationService from '@/service/registration';
 
 export default {
-  name: "RegisterPage",
-  data: function() {
+  name: 'RegisterPage',
+  data() {
     return {
       form: {
         username: '',
         emailAddress: '',
-        password: ''
-      }
-    }
+        password: '',
+      },
+      errorMessage: '',
+    };
   },
   methods: {
     submitForm() {
       registrationService.register(this.form).then(() => {
-        this.$router.push({name: 'LoginPage'})
+        this.$router.push({ name: 'LoginPage' });
       }).catch((error) => {
-        this.errorMassage =
-          `Failed to register user. Reason: ${error.message ? error.message : 'Unknown'}.`;
+        this.errorMassage = `Failed to register user. Reason: ${error.message ? error.message : 'Unknown'}.`;
       });
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
