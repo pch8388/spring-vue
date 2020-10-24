@@ -5,7 +5,7 @@ import RegisterPage from './views/RegisterPage.vue';
 
 Vue.use(VueRouter);
 
-const router = new VueRouter({
+export default new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [{
@@ -19,5 +19,3 @@ const router = new VueRouter({
     component: RegisterPage,
   }],
 });
-
-export default router;
