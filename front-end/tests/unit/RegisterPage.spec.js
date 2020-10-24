@@ -6,7 +6,7 @@ const localVue = createLocalVue();
 localVue.use(VueRouter);
 const router = new VueRouter();
 
-jest.mock('@/service/registration')
+jest.mock('@/services/registration')
 
 describe('RegisterPage.vue', () => {
   let wrapper;

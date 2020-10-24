@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import registrationService from '@/service/registration';
+import registrationService from '@/services/registration';
 
 export default {
   name: 'RegisterPage',
@@ -66,7 +66,7 @@ export default {
       registrationService.register(this.form).then(() => {
         this.$router.push({ name: 'LoginPage' });
       }).catch((error) => {
-        this.errorMassage = `Failed to register user. Reason: ${error.message ? error.message : 'Unknown'}.`;
+        this.errorMessage = `Failed to register user. Reason: ${error.message ? error.message : 'Unknown'}.`;
       });
     },
   },

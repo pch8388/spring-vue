@@ -1,5 +1,5 @@
 import moxios from 'moxios';
-import registrationService from '@/service/registration';
+import registrationService from '@/services/registration';
 
 describe('services/registration', () => {
   beforeEach(() => {
