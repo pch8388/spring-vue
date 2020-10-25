@@ -1,4 +1,4 @@
-package study.taskagile.springvue.web;
+package study.taskagile.springvue.web.pages;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
