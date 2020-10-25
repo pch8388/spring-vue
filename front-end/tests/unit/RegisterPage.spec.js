@@ -63,9 +63,9 @@ describe('RegisterPage.vue', () => {
     const emailAddress = 'test@test.com';
     const password = 'VueTest!';
 
-    wrapper.vm.form.username = username;
-    wrapper.vm.form.emailAddress = emailAddress;
-    wrapper.vm.form.password = password;
+    fieldUsername.element.value = username;
+    fieldEmailAddress.element.value = emailAddress;
+    fieldPassword.element.value = password;
     expect(fieldUsername.element.value).toEqual(username);
     expect(fieldEmailAddress.element.value).toEqual(emailAddress);
     expect(fieldPassword.element.value).toEqual(password);
@@ -84,7 +84,7 @@ describe('RegisterPage.vue', () => {
     wrapper.vm.$router.push = stub;
     wrapper.vm.form.username = 'sunny';
     wrapper.vm.form.emailAddress = 'test@test.com';
-    wrapper.vm.form.password = 'Jest!';
+    wrapper.vm.form.password = 'Jest1111!';
     wrapper.vm.submitForm();
     expect(registerSpy).toBeCalled();
     await wrapper.vm.$nextTick();
@@ -93,10 +93,14 @@ describe('RegisterPage.vue', () => {
 
   it('should fail it is not a new user', async () => {
     expect.assertions(3);
+
+    wrapper.vm.form.username = 'user';
     wrapper.vm.form.emailAddress = 'ted@taskagile.com';
+    wrapper.vm.form.password = 'JestRocks!';
     expect(wrapper.find('.failed').isVisible()).toBe(false);
     wrapper.vm.submitForm();
     expect(registerSpy).toBeCalled();
+    await wrapper.vm.$nextTick();
     await wrapper.vm.$nextTick();
     expect(wrapper.find('.failed').isVisible()).toBe(true);
   });
