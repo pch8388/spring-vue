@@ -43,8 +43,8 @@ class RegistrationApiTests {
         payload.setPassword("MyPassword!");
 
         mvc.perform(post("/api/registrations")
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(Objects.requireNonNull(JsonUtils.toJson(payload))))
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(Objects.requireNonNull(JsonUtils.toJson(payload))))
             .andExpect(status().isCreated());
 
         verify(userService).register(any());

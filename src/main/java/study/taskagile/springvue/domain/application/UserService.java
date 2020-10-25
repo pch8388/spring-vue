@@ -1,7 +1,8 @@
 package study.taskagile.springvue.domain.application;
 
 import study.taskagile.springvue.domain.application.command.RegistrationCommand;
+import study.taskagile.springvue.domain.model.user.User;
 
 public interface UserService {
-    void register(RegistrationCommand command);
+    User register(RegistrationCommand command);
 }

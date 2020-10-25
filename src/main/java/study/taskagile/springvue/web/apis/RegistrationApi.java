@@ -7,10 +7,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import study.taskagile.springvue.domain.application.UserService;
+import study.taskagile.springvue.domain.model.user.User;
 import study.taskagile.springvue.web.payload.RegistrationPayload;
 import study.taskagile.springvue.web.results.ApiResult;
 
 import javax.validation.Valid;
+
+import static study.taskagile.springvue.web.results.ApiResult.OK;
 
 @RestController
 @RequiredArgsConstructor
@@ -20,8 +23,7 @@ public class RegistrationApi {
 
     @PostMapping("/api/registrations")
     @ResponseStatus(HttpStatus.CREATED)
-    public ApiResult<?> register(@Valid @RequestBody RegistrationPayload payload) {
-        userService.register(payload.toCommand());
-        return ApiResult.OK("");
+    public ApiResult<User> register(@Valid @RequestBody RegistrationPayload payload) {
+        return OK(userService.register(payload.toCommand()));
     }
 }
