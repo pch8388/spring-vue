@@ -194,7 +194,7 @@
                         </goals>
                         <phase>prepare-package</phase>
                         <configuration>
-                            <outputDirectory>${basedir}/src/main/resources/static/static</outputDirectory>
+                            <outputDirectory>${basedir}/src/main/resources/static</outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>front-end/dist</directory>
