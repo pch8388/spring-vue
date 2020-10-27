@@ -63,9 +63,9 @@ describe('RegisterPage.vue', () => {
     const emailAddress = 'test@test.com';
     const password = 'VueTest!';
 
-    fieldUsername.element.value = username;
-    fieldEmailAddress.element.value = emailAddress;
-    fieldPassword.element.value = password;
+    fieldUsername.setValue(username);
+    fieldEmailAddress.setValue(emailAddress);
+    fieldPassword.setValue(password);
     expect(fieldUsername.element.value).toEqual(username);
     expect(fieldEmailAddress.element.value).toEqual(emailAddress);
     expect(fieldPassword.element.value).toEqual(password);
@@ -88,7 +88,7 @@ describe('RegisterPage.vue', () => {
     wrapper.vm.submitForm();
     expect(registerSpy).toBeCalled();
     await wrapper.vm.$nextTick();
-    expect(stub).toHaveBeenCalledWith({name: 'LoginPage'});
+    expect(stub).toHaveBeenCalledWith({name: 'login'});
   });
 
   it('should fail it is not a new user', async () => {
