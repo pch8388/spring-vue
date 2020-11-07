@@ -50,7 +50,7 @@
               <div class="error" v-if="!$v.form.password.required">Password is required</div>
               <div class="error" v-if="!$v.form.password.minLength">
                 Password is too short. It can contains at least
-                {{ $v.form.password.$params.min.min }} letters.
+                {{ $v.form.password.$params.minLength.min }} letters.
               </div>
               <div class="error" v-if="!$v.form.password.maxLength">
                 Password is too long. It can contains maximum

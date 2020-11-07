@@ -7,5 +7,5 @@ export default {
         resolve(data);
       }).catch((error) => reject(error));
     });
-  }
-}
+  },
+};
