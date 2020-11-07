@@ -4,8 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import study.taskagile.springvue.domain.common.security.PasswordEncryptor;
 
-import java.util.Optional;
-
 @Component
 @RequiredArgsConstructor
 public class RegistrationManagement {
