@@ -6,16 +6,17 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.core.userdetails.UserDetails;
 import study.taskagile.springvue.domain.application.command.RegistrationCommand;
 import study.taskagile.springvue.domain.common.event.DomainEventPublisher;
 import study.taskagile.springvue.domain.common.mail.MailManager;
 import study.taskagile.springvue.domain.common.mail.MessageVariable;
-import study.taskagile.springvue.domain.model.user.EmailExistsException;
-import study.taskagile.springvue.domain.model.user.RegistrationManagement;
-import study.taskagile.springvue.domain.model.user.User;
-import study.taskagile.springvue.domain.model.user.UsernameExistsException;
+import study.taskagile.springvue.domain.model.user.*;
 import study.taskagile.springvue.domain.model.user.event.UserRegisteredEvent;
 
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -30,6 +31,8 @@ class UserServiceImplTests {
     private DomainEventPublisher eventPublisher;
     @Mock
     private MailManager mailManager;
+    @Mock
+    private UserRepository repository;
     @InjectMocks
     private UserServiceImpl userService;
 
@@ -87,5 +90,21 @@ class UserServiceImplTests {
         String emailAddress = "test@test.com";
         String password = "MyPassword!";
         return new RegistrationCommand(username, emailAddress, password);
+    }
+
+    @Test
+    @DisplayName("UserDetailsService 구현 확인")
+    void loadUserByUsername_success() {
+        RegistrationCommand command = generatedCommand();
+        User newUser = User.create(
+            command.getUsername(), command.getEmailAddress(),
+            command.getPassword());
+
+        when(repository.findByUsername(command.getUsername()))
+            .thenReturn(Optional.of(newUser));
+
+        final UserDetails user = userService.loadUserByUsername(command.getUsername());
+        assertEquals(newUser.getUsername(), user.getUsername());
+        assertEquals(newUser.getPassword(), user.getPassword());
     }
 }
