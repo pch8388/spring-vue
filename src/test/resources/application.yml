@@ -9,8 +9,16 @@ spring:
     hibernate:
       ddl-auto: create-drop
     database-platform: org.hibernate.dialect.H2Dialect
+  mail:
+    host: localhost
+    port: 1025
+    properties:
+      mail.smtp.auth: false
 
 logging:
   level:
     org.hibernate.SQL: debug
     org.hibernate.type: trace
+
+app:
+  mail-from: noreply@taskagile.com
