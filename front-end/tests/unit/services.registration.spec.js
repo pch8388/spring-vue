@@ -32,11 +32,11 @@ describe('services/registration', () => {
       expect(request).toBeTruthy();
       request.reject({
         status: 400,
-        response: {message: 'Bad request'}
+        response: {data: {error:{message: 'Bad request.', status: 400}}}
       });
     })
     return registrationService.register().catch(error => {
-      expect(error.response.message).toEqual('Bad request');
+      expect(error.message).toEqual('Bad request.');
     });
   });
 });

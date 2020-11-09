@@ -26,7 +26,7 @@ public class SimpleAuthenticationFailureHandler implements AuthenticationFailure
 
     private ApiResult<?> generateApiResult(AuthenticationException exception) {
         if (exception instanceof BadCredentialsException) {
-            return ERROR("Invalid Credentials", HttpStatus.BAD_REQUEST);
+            return ERROR("Invalid credentials", HttpStatus.BAD_REQUEST);
         } else if (exception instanceof InsufficientAuthenticationException) {
             return ERROR("Invalid authentication request", HttpStatus.BAD_REQUEST);
         }
