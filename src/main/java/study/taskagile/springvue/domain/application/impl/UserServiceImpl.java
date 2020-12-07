@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import study.taskagile.springvue.domain.application.UserService;
 import study.taskagile.springvue.domain.application.command.RegistrationCommand;
@@ -13,7 +14,6 @@ import study.taskagile.springvue.domain.common.mail.MessageVariable;
 import study.taskagile.springvue.domain.model.user.*;
 import study.taskagile.springvue.domain.model.user.event.UserRegisteredEvent;
 
-import javax.transaction.Transactional;
 
 @Service
 @Transactional
@@ -47,6 +47,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         if (username.isEmpty()) {
             throw new UsernameNotFoundException("No user found");

@@ -9,13 +9,13 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import study.taskagile.springvue.domain.application.UserService;
+import study.taskagile.springvue.domain.model.user.User;
 import study.taskagile.springvue.utils.JsonUtils;
 import study.taskagile.springvue.web.payload.RegistrationPayload;
 
 import java.util.Objects;
 
-import static org.mockito.Mockito.any;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -41,6 +41,10 @@ class RegistrationApiTests {
         payload.setUsername("exist");
         payload.setEmailAddress("test@taskagile.com");
         payload.setPassword("MyPassword!");
+
+        User user = User.create(payload.getUsername(), payload.getEmailAddress(), payload.getPassword());
+//        when(user.getId()).thenReturn(1L);
+        when(userService.register(any())).thenReturn(user);
 
         mvc.perform(post("/api/registrations")
                 .contentType(MediaType.APPLICATION_JSON)

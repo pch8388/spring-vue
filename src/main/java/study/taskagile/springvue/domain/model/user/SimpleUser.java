@@ -1,6 +1,7 @@
 package study.taskagile.springvue.domain.model.user;
 
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -11,6 +12,7 @@ import java.util.Collections;
 
 @EqualsAndHashCode(of = {"username"})
 @ToString(of = {"userId", "username", "password"})
+@Getter
 public class SimpleUser implements UserDetails {
 
     private Long userId;
@@ -26,16 +28,6 @@ public class SimpleUser implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.singleton(new SimpleGrantedAuthority("ROLE_USER"));
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
-    }
-
-    @Override
-    public String getUsername() {
-        return username;
     }
 
     @Override
