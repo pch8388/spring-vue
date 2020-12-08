@@ -3,6 +3,7 @@ package study.taskagile.springvue.domain.application.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 import study.taskagile.springvue.domain.application.BoardService;
 import study.taskagile.springvue.domain.application.command.CreateBoardCommand;
 import study.taskagile.springvue.domain.common.event.DomainEventPublisher;
@@ -29,6 +30,8 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public Board createBoard(CreateBoardCommand command) {
+        Assert.notNull(command, "Parameter command must not be null");
+
         Board board = boardManagement.createBoard(
             command.getUserId(), command.getName(),
             command.getDescription(), command.getTeamId());

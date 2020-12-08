@@ -1,11 +1,11 @@
-package study.taskagile.springvue.domain.model.user;
+package study.taskagile.springvue.infrastructure.repository;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
-import study.taskagile.springvue.infrastructure.repository.UserRepository;
+import study.taskagile.springvue.domain.model.user.User;
 
 import javax.transaction.Transactional;
 
