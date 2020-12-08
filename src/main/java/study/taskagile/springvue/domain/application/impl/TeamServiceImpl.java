@@ -7,8 +7,8 @@ import study.taskagile.springvue.domain.application.TeamService;
 import study.taskagile.springvue.domain.application.command.CreateTeamCommand;
 import study.taskagile.springvue.domain.common.event.DomainEventPublisher;
 import study.taskagile.springvue.domain.model.team.Team;
-import study.taskagile.springvue.domain.model.team.TeamRepository;
 import study.taskagile.springvue.domain.model.team.event.TeamCreateEvent;
+import study.taskagile.springvue.infrastructure.repository.TeamRepository;
 
 import java.util.List;
 

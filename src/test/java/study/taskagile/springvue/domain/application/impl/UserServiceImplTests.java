@@ -13,6 +13,7 @@ import study.taskagile.springvue.domain.common.mail.MailManager;
 import study.taskagile.springvue.domain.common.mail.MessageVariable;
 import study.taskagile.springvue.domain.model.user.*;
 import study.taskagile.springvue.domain.model.user.event.UserRegisteredEvent;
+import study.taskagile.springvue.infrastructure.repository.UserRepository;
 
 import java.util.Optional;
 

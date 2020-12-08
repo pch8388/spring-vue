@@ -9,7 +9,7 @@ import study.taskagile.springvue.domain.common.event.DomainEventPublisher;
 import study.taskagile.springvue.domain.model.board.event.BoardCreateEvent;
 import study.taskagile.springvue.domain.model.board.BoardManagement;
 import study.taskagile.springvue.domain.model.board.Board;
-import study.taskagile.springvue.domain.model.board.BoardRepository;
+import study.taskagile.springvue.infrastructure.repository.BoardRepository;
 
 import java.util.List;
 

@@ -3,6 +3,7 @@ package study.taskagile.springvue.domain.model.user;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import study.taskagile.springvue.domain.common.security.PasswordEncryptor;
+import study.taskagile.springvue.infrastructure.repository.UserRepository;
 
 @Component
 @RequiredArgsConstructor

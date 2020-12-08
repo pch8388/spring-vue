@@ -2,6 +2,8 @@ package study.taskagile.springvue.domain.model.board;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import study.taskagile.springvue.infrastructure.repository.BoardMemberRepository;
+import study.taskagile.springvue.infrastructure.repository.BoardRepository;
 
 @Component
 @RequiredArgsConstructor

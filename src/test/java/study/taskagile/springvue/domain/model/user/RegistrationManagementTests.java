@@ -8,6 +8,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import study.taskagile.springvue.domain.common.security.PasswordEncryptor;
+import study.taskagile.springvue.infrastructure.repository.UserRepository;
 
 import java.util.Optional;
 
