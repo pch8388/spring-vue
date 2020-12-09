@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface BoardRepository extends CrudRepository<Board, Long> {
     @Query(
-        value = "select b.* from board b left join board_member bm on b.id = bm.board_id where bm.user_id = :userId",
+        value = "select b.* from board b left join board_member bm on b.board_id = bm.board_id where bm.user_id = :userId",
         nativeQuery = true)
     List<Board> findBoardsByMembership(Long userId);
 }
