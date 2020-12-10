@@ -6,6 +6,7 @@ module.exports = {
         target: 'http://localhost:8080'
       }
     },
+    overlay:false,
   },
   configureWebpack: {
     entry: {

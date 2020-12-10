@@ -2,9 +2,9 @@ import axios from 'axios';
 import errorParser from '../utils/error-parser';
 
 export default {
-  create(detail) {
+  getMyData() {
     return new Promise(((resolve, reject) => {
-      axios.post('/me', detail).then(({data}) => {
+      axios.get('/me').then(({ data }) => {
         resolve(data);
       }).catch((error) => {
         reject(errorParser.parse(error));

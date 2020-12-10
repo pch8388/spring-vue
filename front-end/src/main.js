@@ -1,10 +1,10 @@
 import Vue from 'vue';
 import axios from 'axios';
 import Vuelidate from 'vuelidate';
+import i18n from '@/i18n';
 import App from './App.vue';
 import router from './router';
 import store from './store';
-import { i18n } from "@/i18n";
 
 axios.defaults.baseURL = '/api';
 axios.defaults.headers.common.Accept = 'application/json';

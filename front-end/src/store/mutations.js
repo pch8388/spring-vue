@@ -1,6 +1,6 @@
 export default {
   updateMyData(state, data) {
-    state.user.name = data.user.name;
+    state.user.name = data.username;
     state.teams = data.teams;
     state.boards = data.boards;
   },
