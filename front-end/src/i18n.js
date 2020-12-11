@@ -7,8 +7,8 @@ Vue.use(VueI18n);
 const i18n = new VueI18n({
   locale: 'en_US',
   messages: {
-    enUS,
-    zhCN,
+    en_US: enUS,
+    zh_CN: zhCN,
   },
 });
 
