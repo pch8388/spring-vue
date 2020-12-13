@@ -6,14 +6,16 @@
     </div>
     <div class="boards-menu-toggle">
       <div class="dropdown">
-        <button class="btn dropdown-toggle" type="button" id="boardsMenu" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
+        <button class="btn dropdown-toggle" type="button" id="boardsMenu"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           {{ $t('header.boardsMenu.label') }}
         </button>
         <div class="dropdown-menu" aria-labelledby="boardsMenu">
           <div v-show="!hasBoards" class="dropdown-item">{{ $t('header.boardsMenu.noBoard') }}</div>
           <div v-show="hasBoards">
-            <h6 class="dropdown-header" v-show="personalBoards.length">{{ $t('header.boardsMenu.personalBoards') }}</h6>
+            <h6 class="dropdown-header" v-show="personalBoards.length">
+              {{ $t('header.boardsMenu.personalBoards') }}
+            </h6>
             <button v-for="board in personalBoards" v-bind:key="board.id" @click="openBoard(board)"
                     class="dropdown-item" type="button">{{ board.name }}
             </button>
@@ -30,13 +32,14 @@
     <div class="search-box flex-fill">
       <div class="search-wrapper">
         <font-awesome-icon icon="search" class="search-icon"/>
-        <input type="text" v-bind:placeholder="$t('header.search')" class="form-control form-control-sm"/>
+        <input type="text" v-bind:placeholder="$t('header.search')"
+               class="form-control form-control-sm"/>
       </div>
     </div>
     <div class="profile-menu-toggle">
       <div class="dropdown">
-        <button class="btn dropdown-toggle" type="button" id="profileMenu" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
+        <button class="btn dropdown-toggle" type="button" id="profileMenu"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           {{ user.name }}
         </button>
         <div class="dropdown-menu" aria-labelledby="profileMenu">
@@ -49,8 +52,8 @@
 </template>
 
 <script>
-import 'bootstrap/dist/js/bootstrap.min'
-import {mapGetters} from 'vuex'
+import 'bootstrap/dist/js/bootstrap.min';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'PageHeader',
@@ -59,21 +62,21 @@ export default {
       'user',
       'hasBoards',
       'personalBoards',
-      'teamBoards'
-    ])
+      'teamBoards',
+    ]),
   },
   created() {
-    this.$store.dispatch('getMyData')
+    this.$store.dispatch('getMyData');
   },
   methods: {
     goHome() {
-      this.$router.push({name: 'home'})
+      this.$router.push({ name: 'home' });
     },
     openBoard(board) {
-      this.$router.push({name: 'board', params: {boardId: board.id}})
-    }
-  }
-}
+      this.$router.push({ name: 'board', params: { boardId: board.id } });
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
