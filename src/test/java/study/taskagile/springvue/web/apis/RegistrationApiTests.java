@@ -43,7 +43,6 @@ class RegistrationApiTests {
         payload.setPassword("MyPassword!");
 
         User user = User.create(payload.getUsername(), payload.getEmailAddress(), payload.getPassword());
-//        when(user.getId()).thenReturn(1L);
         when(userService.register(any())).thenReturn(user);
 
         mvc.perform(post("/api/registrations")
