@@ -1,6 +1,5 @@
 package study.taskagile.springvue.web.apis;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,27 +11,18 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 import study.taskagile.springvue.domain.application.command.CreateBoardCommand;
 import study.taskagile.springvue.domain.model.board.Board;
-import study.taskagile.springvue.domain.model.card.Card;
-import study.taskagile.springvue.domain.model.cardList.CardList;
-import study.taskagile.springvue.domain.model.team.Team;
 import study.taskagile.springvue.domain.model.user.User;
 import study.taskagile.springvue.infrastructure.repository.BoardRepository;
 import study.taskagile.springvue.infrastructure.repository.UserRepository;
-import study.taskagile.springvue.utils.JsonUtils;
 import study.taskagile.springvue.web.apis.authenticate.WithMockCustomUser;
 import study.taskagile.springvue.web.payload.AddBoardMemberPayload;
 import study.taskagile.springvue.web.payload.CreateBoardPayload;
 
-import java.lang.reflect.Field;
-import java.util.Collections;
-import java.util.Objects;
-
-import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.BDDMockito.given;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static java.util.Objects.requireNonNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static study.taskagile.springvue.utils.JsonUtils.toJson;
 
 @ActiveProfiles("test")
 @AutoConfigureMockMvc
@@ -53,7 +43,7 @@ class BoardApiControllerTest {
 
         mockMvc.perform(post("/api/boards")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(Objects.requireNonNull(JsonUtils.toJson(command))))
+                .content(requireNonNull(toJson(command))))
             .andExpect(status().isCreated());
     }
 
@@ -72,7 +62,7 @@ class BoardApiControllerTest {
 
         mockMvc.perform(post("/api/boards/{boardId}/members", saveBoard.getId())
                     .contentType(MediaType.APPLICATION_JSON)
-                    .content(new ObjectMapper().writeValueAsString(payload)))
+                    .content(requireNonNull(toJson(payload))))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$.response.id").value(saveUser.getId()))
             .andExpect(jsonPath("$.response.shortName").value(saveUser.getUsername()));
