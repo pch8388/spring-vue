@@ -61,11 +61,11 @@ public class UserServiceImpl implements UserService {
     private User findUser(String username) {
         if (username.contains("@")) {
             return userRepository.findByEmailAddress(username)
-                .orElseThrow(NotFoundUserByEmail::new);
+                .orElseThrow(NotFoundUserByEmailException::new);
         }
 
         return userRepository.findByUsername(username)
-            .orElseThrow(NotFoundUserByUsername::new);
+            .orElseThrow(NotFoundUserByUsernameException::new);
 
     }
 }

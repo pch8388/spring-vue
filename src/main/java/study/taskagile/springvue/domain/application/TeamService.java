@@ -9,4 +9,6 @@ public interface TeamService {
     List<Team> findTeamsByUserId(Long userId);
 
     Team createTeam(CreateTeamCommand command);
+
+    Team findById(Long teamId);
 }

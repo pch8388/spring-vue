@@ -42,4 +42,8 @@ public class Board extends BaseTimeEntity {
         board.archived = false;
         return board;
     }
+
+    public boolean isPersonal() {
+        return Optional.ofNullable(teamId).isEmpty();
+    }
 }

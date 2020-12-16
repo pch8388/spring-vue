@@ -1,6 +1,8 @@
 package study.taskagile.springvue.domain.model.user;
 
-public class RegistrationException extends RuntimeException {
+import study.taskagile.springvue.domain.common.model.BusinessException;
+
+public class RegistrationException extends BusinessException {
     public RegistrationException(String message) {
         super(message);
     }
