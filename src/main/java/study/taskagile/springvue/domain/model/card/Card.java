@@ -34,21 +34,17 @@ public class Card extends BaseTimeEntity {
     @Column(name = "archived")
     private boolean archived;
 
-    private Card(Long cardListId, Long userId, String title,
-                 String description, int position) {
+    private Card(Long cardListId, Long userId, String title, int position) {
 
         this.cardListId = cardListId;
         this.userId = userId;
         this.title = title;
-        this.description = description;
+        this.description = "";
         this.position = position;
         this.archived = false;
     }
 
-    public static Card create(
-        Long cardListId, Long userId, String title,
-        String description, int position) {
-
-        return new Card(cardListId, userId, title, description, position);
+    public static Card create(Long cardListId, Long userId, String title, int position) {
+        return new Card(cardListId, userId, title, position);
     }
 }
