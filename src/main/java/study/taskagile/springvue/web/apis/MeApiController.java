@@ -11,6 +11,7 @@ import study.taskagile.springvue.domain.model.board.Board;
 import study.taskagile.springvue.domain.model.team.Team;
 import study.taskagile.springvue.domain.model.user.SimpleUser;
 import study.taskagile.springvue.web.results.ApiResult;
+import study.taskagile.springvue.web.results.MeResponseDto;
 
 import java.util.List;
 

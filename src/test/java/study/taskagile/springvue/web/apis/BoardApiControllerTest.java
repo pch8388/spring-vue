@@ -38,12 +38,12 @@ class BoardApiControllerTest {
     @WithMockCustomUser
     @Transactional
     void create() throws Exception {
-        CreateBoardPayload payload = new CreateBoardPayload("board", "It's board!", 1L);
-        final CreateBoardCommand command = payload.toCommand(2L);
+        final CreateBoardPayload payload =
+            new CreateBoardPayload("board", "It's board!", 1L);
 
         mockMvc.perform(post("/api/boards")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(requireNonNull(toJson(command))))
+                .content(requireNonNull(toJson(payload))))
             .andExpect(status().isCreated());
     }
 

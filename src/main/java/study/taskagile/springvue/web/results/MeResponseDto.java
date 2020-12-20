@@ -1,4 +1,4 @@
-package study.taskagile.springvue.web.apis;
+package study.taskagile.springvue.web.results;
 
 import lombok.Getter;
 import study.taskagile.springvue.domain.model.board.Board;
