@@ -13,7 +13,8 @@ import javax.persistence.*;
 @Getter
 public class Card extends BaseTimeEntity {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     private Long id;
 
     @Column(name = "card_list_id")
@@ -46,5 +47,12 @@ public class Card extends BaseTimeEntity {
 
     public static Card create(Long cardListId, Long userId, String title, int position) {
         return new Card(cardListId, userId, title, position);
+    }
+
+    public void changePosition(int position) {
+        if (position < 0) {
+            throw new IllegalArgumentException("not valid position : " + position);
+        }
+        this.position = position;
     }
 }

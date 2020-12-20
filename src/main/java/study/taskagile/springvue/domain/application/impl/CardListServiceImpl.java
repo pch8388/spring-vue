@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import study.taskagile.springvue.domain.application.CardListService;
 import study.taskagile.springvue.domain.application.command.AddCardListCommand;
-import study.taskagile.springvue.domain.application.command.ChangeCardPositionsCommand;
+import study.taskagile.springvue.domain.application.command.ChangeCardListPositionsCommand;
 import study.taskagile.springvue.domain.common.event.DomainEventPublisher;
 import study.taskagile.springvue.domain.model.cardList.CardList;
 import study.taskagile.springvue.domain.model.cardList.events.CardListAddedEvent;
@@ -38,7 +38,7 @@ public class CardListServiceImpl implements CardListService {
     }
 
     @Override
-    public void changePositions(ChangeCardPositionsCommand command) {
+    public void changePositions(ChangeCardListPositionsCommand command) {
         command.getCardListPositions().forEach(cardListRepository::changePositions);
     }
 }

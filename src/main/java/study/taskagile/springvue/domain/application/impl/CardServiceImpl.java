@@ -5,12 +5,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import study.taskagile.springvue.domain.application.CardService;
 import study.taskagile.springvue.domain.application.command.AddCardCommand;
+import study.taskagile.springvue.domain.application.command.ChangeCardPositionsCommand;
 import study.taskagile.springvue.domain.common.event.DomainEventPublisher;
 import study.taskagile.springvue.domain.model.card.Card;
+import study.taskagile.springvue.domain.model.card.NotFoundCardException;
 import study.taskagile.springvue.domain.model.card.events.CardAddedEvent;
 import study.taskagile.springvue.infrastructure.repository.CardRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -34,5 +37,14 @@ public class CardServiceImpl implements CardService {
         cardRepository.save(card);
         domainEventPublisher.publish(new CardAddedEvent(this, card));
         return card;
+    }
+
+    @Override
+    public void changePositions(ChangeCardPositionsCommand command) {
+        command.getCardPositions().forEach(cardPosition -> {
+            final Card findCard = cardRepository.findById(cardPosition.getCardId())
+                .orElseThrow(() -> new NotFoundCardException(cardPosition.getCardId()));
+            findCard.changePosition(cardPosition.getPosition());
+        });
     }
 }

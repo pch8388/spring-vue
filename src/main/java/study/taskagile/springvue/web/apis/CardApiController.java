@@ -9,11 +9,12 @@ import study.taskagile.springvue.domain.common.security.CurrentUser;
 import study.taskagile.springvue.domain.model.card.Card;
 import study.taskagile.springvue.domain.model.user.SimpleUser;
 import study.taskagile.springvue.web.payload.AddCardPayload;
+import study.taskagile.springvue.web.payload.ChangeCardPositionsPayload;
 import study.taskagile.springvue.web.results.AddCardResponseDto;
 import study.taskagile.springvue.web.results.ApiResult;
 import study.taskagile.springvue.web.updater.CardUpdater;
 
-import static study.taskagile.springvue.web.results.ApiResult.*;
+import static study.taskagile.springvue.web.results.ApiResult.OK;
 
 @RestController
 @RequiredArgsConstructor
@@ -30,5 +31,11 @@ public class CardApiController {
         final Card card = cardService.addCard(payload.toCommand(currentUser.getUserId()));
         cardUpdater.onCardAdded(payload.getBoardId(), card);
         return OK(new AddCardResponseDto(card));
+    }
+
+    @PostMapping("/api/card/positions")
+    public ApiResult<?> changeCardPositions(@RequestBody ChangeCardPositionsPayload payload) {
+        cardService.changePositions(payload.toCommand());
+        return OK("success");
     }
 }

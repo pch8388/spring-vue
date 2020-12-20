@@ -2,13 +2,13 @@ package study.taskagile.springvue.domain.application.command;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import study.taskagile.springvue.domain.model.cardList.CardListPosition;
+import study.taskagile.springvue.domain.model.CardPosition;
 
 import java.util.List;
 
-@Getter
 @AllArgsConstructor
+@Getter
 public class ChangeCardPositionsCommand {
     private Long boardId;
-    private List<CardListPosition> cardListPositions;
+    private List<CardPosition> cardPositions;
 }
