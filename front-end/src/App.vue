@@ -9,6 +9,11 @@ import 'bootstrap/dist/js/bootstrap.min';
 
 export default {
   name: 'App',
+  created() {
+    this.$bus.$on('myDataFetched', myData => {
+      this.$rt.init(myData.settings.realTimeServerUrl, myData.user.token);
+    });
+  }
 };
 </script>
 

@@ -40,4 +40,14 @@ public final class JsonUtils {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.writeValue(writer, value);
     }
+
+    public static <T> T toObject(String json, Class<T> clazz) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            return objectMapper.readValue(json, clazz);
+        } catch (JsonProcessingException e) {
+            log.error("Failed to convert string `" + json + "` class `" + clazz.getName() + "`", e);
+            return null;
+        }
+    }
 }

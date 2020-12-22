@@ -24,3 +24,4 @@ logging:
 
 app:
   mail-from: noreply@taskagile.com
+  token-secret-key: 60dKuW2Qpc3YkUoaa9i6qY5cyaGgQM8clfxpDGWS3sY=
